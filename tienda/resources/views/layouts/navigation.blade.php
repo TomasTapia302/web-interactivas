@@ -1,5 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-primary text-white">
+    
     <div class="container-fluid bg-primary text-white">
+        <div class="col-2"> </div>
       <a class="navbar-brand text-white" href="welcome">store</a>
       <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon "></span>
@@ -10,7 +12,7 @@
             <a class="nav-link active text-white" aria-current="page" href="dashboard">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#">Features</a>
+            <a class="nav-link text-white" href="carrito">Features</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="#">Pricing</a>
