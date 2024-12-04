@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('carritos', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_orden');
             $table->integer('id_articulo');
+            $table->integer('id_user');
             $table->integer('cantidad');
             $table->float('precio');
             $table->timestamps();

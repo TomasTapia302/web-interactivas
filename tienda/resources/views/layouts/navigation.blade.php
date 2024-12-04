@@ -20,8 +20,7 @@
                 </li>
             </ul>
             <div class="d-flex align-items-center">
-                <a class="nav-link text-white" href="carrito">Carrito</a>
-                <a class="nav-link text-white" href="ordenes">Órdenes</a>
+                <a class="nav-link text-white" href="{{ route('carrito') }}">Carrito</a>
                 <!-- Enlace para Agregar Artículo -->
                 <a class="nav-link text-white" href="/agregar_articulo">Agregar Artículo</a>
                 

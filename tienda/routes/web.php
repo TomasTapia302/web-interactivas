@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArticulosController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarritoController;
 
 Route::get('/', [ArticulosController::class, 'index'])->name('home');
 
@@ -14,8 +15,8 @@ Route::get('/agregar_articulo', [ArticulosController::class, 'create'])->name('a
 
 // Ruta para la vista de MisArticulos
 Route::get('/MisArticulos', function () { return view('MisArticulos'); })->name('MisArticulos'); 
-// Ruta para la vista de Carrito 
-Route::get('/carrito', function () { return view('carrito'); })->name('carrito'); 
+
+
 
 // Ruta para la vista de Órdenes 
 Route::get('/ordenes', function () { return view('ordenes'); })->name('ordenes');
@@ -35,6 +36,14 @@ Route::middleware('auth')->group(function () {
 
     // Ruta para guardar el artículo
     Route::post('/agregar_articulo', [ArticulosController::class, 'store'])->name('agregar_articulo.store');
+
+    //agregar al Carrito
+    Route::post('/carrito', [CarritoController::class, 'store'])->name('carrito.store');
+    Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito');
+    Route::delete('/carrito/{id}', [CarritoController::class, 'destroy'])->name('carrito.destroy');
+    Route::get('/carrito/imprimir', [CarritoController::class, 'imprimirTicket'])->name('carrito.imprimir');
+    Route::post('/carrito/pagar', [CarritoController::class, 'pagar'])->name('carrito.pagar');
+
 });
 
 require __DIR__.'/auth.php';
