@@ -3,11 +3,11 @@
 @section('content')
     <div class="container">
         <h1 class="text-center my-4">Agregar Artículo</h1>
-        <form action="/agregar-articulo" method="POST">
+        <form action="{{ route('agregar_articulo.store') }}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="nombre">Nombre del Artículo</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                <label for="Nom_articulo">Nombre del Artículo</label>
+                <input type="text" class="form-control" id="Nom_articulo" name="Nom_articulo" required>
             </div>
             <div class="form-group">
                 <label for="descripcion">Descripción</label>
@@ -31,15 +31,11 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="id_vendedor">ID del Vendedor</label>
-                <input type="number" class="form-control" id="id_vendedor" name="id_vendedor" required>
-            </div>
-            <div class="form-group">
                 <label for="url_imagen">URL de la Imagen</label>
                 <input type="url" class="form-control" id="url_imagen" name="url_imagen" required>
             </div>
             <button type="submit" class="btn btn-success">Agregar Artículo</button>
-            <a href="/home" class="btn btn-danger">Cancelar</a>
+            <a href="{{ route('home') }}" class="btn btn-danger">Cancelar</a>
         </form>
     </div>
 @endsection
