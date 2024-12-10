@@ -14,12 +14,12 @@
                 <div class="card mb-3 border border-black border-opacity-50 rounded">
                     <div class="row">
                         <div class="col-4">
-                            <img src="{{ $item->articulo->url_imagen }}" class="img-fluid rounded-start" alt="{{ $item->articulo->nombre }}">
+                            <img src="{{$item->articulo->url_imagen}}" class="img-fluid rounded-start" alt="{{ $item->articulo->nombre }}">
                         </div>
                         <div class="col-8">
                             <div class="card-body">
-                                <h5 class="card-title">{{ $item->articulo->nombre }}</h5>
-                                <p class="card-text">{{ $item->articulo->descripcion }}</p>
+                                <h2 class="card-title">{{ $item->articulo->nombre }}</h2>
+                                <p class="card-text">{{ $item->articulo->precio}}</p>
                                 <div class="row">
                                     <div class="col">
                                         <form action="{{ route('carrito.destroy', $item->id) }}" method="POST">

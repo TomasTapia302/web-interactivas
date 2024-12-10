@@ -56,6 +56,7 @@ class CarritoController extends Controller
                 'id_user' => $user->id,
                 'cantidad' => $request->cantidad,
                 'precio' => $articulo->precio * $request->cantidad,
+                
             ]);
         }
 

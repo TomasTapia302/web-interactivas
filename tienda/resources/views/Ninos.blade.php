@@ -5,15 +5,27 @@
         <h1 class="text-center my-4">Artículos para Niños</h1>
         <div class="row">
             @foreach($articulos as $articulo)
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="card">
-                        <img src="{{ $articulo->url_imagen }}" alt="{{ $articulo->nombre }}" class="card-img-top">
+                        <div class="card-img-wrapper">
+                            <img src="{{ $articulo->url_imagen }}" alt="{{ $articulo->Nom_articulo }}" class="card-img-top">
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ $articulo->nombre }}</h5>
+                            <h5 class="card-title">{{ $articulo->Nom_articulo }}</h5>
                             <p class="card-text">Precio: ${{ $articulo->precio }}</p>
                             <p class="card-text">Inventario: {{ $articulo->inventario }}</p>
+                            <form action="{{ route('carrito.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id_articulo" value="{{ $articulo->id }}">
+                                <input type="hidden" name="cantidad" value="1">
+                                <button type="submit" class="btn btn-success btn-block">Agregar al Carrito</button>
+                            </form>
+                           
                         </div>
                     </div>
+                </div>
+                @if ($loop->iteration % 4 == 0)
+                    </div><div class="row">
                 @endif
             @endforeach
         </div>

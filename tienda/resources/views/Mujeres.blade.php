@@ -14,7 +14,13 @@
                             <h5 class="card-title">{{ $articulo->Nom_articulo }}</h5>
                             <p class="card-text">Precio: ${{ $articulo->precio }}</p>
                             <p class="card-text">Inventario: {{ $articulo->inventario }}</p>
-                            <a href="#" class="btn btn-success btn-block">Agregar al Carrito</a>
+                            <form action="{{ route('carrito.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id_articulo" value="{{ $articulo->id }}">
+                                <input type="hidden" name="cantidad" value="1">
+                                <button type="submit" class="btn btn-success btn-block">Agregar al Carrito</button>
+                            </form>
+                           
                         </div>
                     </div>
                 </div>

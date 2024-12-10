@@ -7,11 +7,36 @@ use Illuminate\Http\Request;
 
 class ArticulosController extends Controller
 {
+
+
     public function index()
     {
         $articulos = articulos::all();
         return view('welcome', compact('articulos'));
     }
+   
+
+    public function MisArticulos(Request $request)
+{
+    $query = articulos::query();
+
+    if ($request->has('hombres')) {
+        $query->where('tipo', 'hombres');
+    }
+
+    if ($request->has('mujeres')) {
+        $query->orWhere('tipo', 'mujeres');
+    }
+
+    if ($request->has('niños')) {
+        $query->orWhere('tipo', 'niños');
+    }
+
+    $articulos = $query->get();
+
+    return view('MisArticulos', compact('articulos'));
+}
+
 
     public function home()
     {
@@ -84,8 +109,43 @@ class ArticulosController extends Controller
     }
     
     
-        
+    public function edit($id)
+    {
+        $articulo = articulos::find($id);
+    
+        // Asegúrate de que este sea el nombre correcto de la vista
+        return view('articuloedit', compact('articulo'));
+    }
        
+    public function update(Request $request, $id)
+    {
+        // Validar los campos
+        $request->validate([
+            'Nom_articulo' => 'required|string|max:255',
+            'descripcion' => 'required|string',
+            'precio' => 'required|numeric',
+            'inventario' => 'required|integer',
+            'tipo' => 'required|string|in:Hombres,Mujeres,Niños,Accesorios',
+            'url_imagen' => 'required|url',
+        ]);
+    
+        // Buscar el artículo por ID y actualizarlo
+        $articulo = articulos::findOrFail($id);
+        $articulo->Nom_articulo = $request->Nom_articulo;
+        $articulo->descripcion = $request->descripcion;
+        $articulo->precio = $request->precio;
+        $articulo->inventario = $request->inventario;
+        $articulo->tipo = $request->tipo;
+        $articulo->url_imagen = $request->url_imagen;
+    
+        // Guardar cambios en la base de datos
+        if ($articulo->save()) {
+            return redirect()->route('home')->with('success', 'Artículo actualizado con éxito');
+        } else {
+            return redirect()->back()->with('error', 'Hubo un problema al actualizar el artículo');
+        }
+    }
+    
     
     
 

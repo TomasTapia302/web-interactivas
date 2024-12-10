@@ -3,11 +3,6 @@
 @section('content')
     <div class="container">
         <h1 class="text-center my-4 title-stylish">Artículos para Hombres</h1>
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
         <div class="row">
             @foreach($articulos as $articulo)
                 <div class="col-md-3">
@@ -22,10 +17,7 @@
                             <form action="{{ route('carrito.store') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id_articulo" value="{{ $articulo->id }}">
-                                <div class="form-group">
-                                    <label for="cantidad_{{ $articulo->id }}">Cantidad:</label>
-                                    <input type="number" name="cantidad" id="cantidad_{{ $articulo->id }}" class="form-control" min="1" max="{{ $articulo->inventario }}" required>
-                                </div>
+                                <input type="hidden" name="cantidad" value="1">
                                 <button type="submit" class="btn btn-success btn-block">Agregar al Carrito</button>
                             </form>
                         </div>

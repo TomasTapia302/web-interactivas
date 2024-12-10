@@ -38,7 +38,16 @@
                             <h5 class="card-title">{{ $articulo->Nom_articulo }}</h5>
                             <p class="card-text">Precio: ${{ $articulo->precio }}</p>
                             <p class="card-text">Inventario: {{ $articulo->inventario }}</p>
-                            <a href="#" class="btn btn-success btn-block">Agregar al Carrito</a>
+                            <form action="{{ route('carrito.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id_articulo" value="{{ $articulo->id }}">
+                                <div class="form-group">
+                                    <label for="cantidad_{{ $articulo->id }}">Cantidad:</label>
+                                    <input type="number" name="cantidad" id="cantidad_{{ $articulo->id }}" class="form-control" min="1" max="{{ $articulo->inventario }}" required>
+                                </div>
+                                <button type="submit" class="btn btn-success btn-block">Agregar al Carrito</button>
+                            </form>
+                           
                         </div>
                     </div>
                 </div>
